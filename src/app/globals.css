@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap');
+
+/* Dark mode renkler */
+:root {
+  --background: #080B0B; /* Arka plan rengi */
+  --foreground: rgb(232, 230, 227); /* Yazı rengi */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #080B0B;
+    --foreground: rgb(232, 230, 227); /* Yazı rengini doğru olarak ayarlayın */
+  }
+}
+
+/* Body stili */
+body {
+  color: var(--foreground); /* Rengi tanımladığımız değişkeni kullanıyoruz */
+  background-color: var(--background); /* Arka plan rengini değişken ile ayarladık */
+  font-family: 'Poppins', -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+
+
+@layer base {
+  body {
+    @apply bg-background text-foreground;
+  }
+}
