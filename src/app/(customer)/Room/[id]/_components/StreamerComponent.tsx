@@ -7,12 +7,13 @@ export default function StreamerComponent({ streamKey }: { streamKey: string }) 
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
+    let rtmpUrl = process.env.NEXT_PUBLIC_RTMP_URL;
     let flvPlayer: flvjs.Player | null = null;
 
     if (flvjs.isSupported()) {
       flvPlayer = flvjs.createPlayer({
         type: 'flv',
-        url: `http://localhost:8000/live/${streamKey}.flv`
+        url: `${rtmpUrl}/live/${streamKey}.flv`
       });
       flvPlayer.attachMediaElement(videoRef.current as HTMLVideoElement);
       flvPlayer.load();
@@ -37,7 +38,7 @@ export default function StreamerComponent({ streamKey }: { streamKey: string }) 
     <CardContent>
           <div className="space-y-4">
              <label htmlFor="name" className="block text-sm font-medium text-white">
-              Server : rtmp://localhost/live
+              Server : {process.env.NEXT_PUBLIC_RTMP_TEXT}
               </label>
               <label htmlFor="name" className="block text-sm font-medium text-white">
               Stream Key : {streamKey}

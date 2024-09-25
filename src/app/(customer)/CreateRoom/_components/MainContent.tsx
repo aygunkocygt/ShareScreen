@@ -45,7 +45,7 @@ export default function MainContent() {
                 Server (OBS)
               </label>
               <Input
-                defaultValue={"rtmp://localhost/live"}
+                defaultValue={process.env.NEXT_PUBLIC_RTMP_TEXT}
                 disabled
                 type="text"
                 id="Server"

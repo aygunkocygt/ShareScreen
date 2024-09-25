@@ -6,12 +6,13 @@ export default function ViewerComponent({ streamKey }: { streamKey: string }) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
+    let rtmpUrl = process.env.NEXT_PUBLIC_RTMP_URL;
     let flvPlayer: flvjs.Player | null = null;
 
     if (flvjs.isSupported()) {
       flvPlayer = flvjs.createPlayer({
         type: 'flv',
-        url: `http://localhost:8000/live/${streamKey}.flv`
+        url: `${rtmpUrl}/live/${streamKey}.flv`
       });
       flvPlayer.attachMediaElement(videoRef.current as HTMLVideoElement);
       flvPlayer.load();
