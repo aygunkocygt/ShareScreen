@@ -12,6 +12,7 @@ export default async function CustomerLayout({
     const session = await getServerSession(authOptions);
     
     return (
+      
     <div className={`antialiased`}>
         <Navbar session={session} />
         {children}

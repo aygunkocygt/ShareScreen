@@ -2,7 +2,6 @@
 import { signIn } from 'next-auth/react';
 import { motion } from 'framer-motion';
 import Image from "next/image";
-import Logo from '../../_components/logo2.png'
 import { Input } from '@/components/ui/input';
 import { useState, useTransition } from 'react';
 import { CreateUser } from '@/app/(customer)/_actions/login'
@@ -60,8 +59,9 @@ export default function Login() {
         transition={{ duration: 1 }}          // Animasyon süresi
       >
         <Image
-          src={Logo}
+         src="/logo.png"
           width={180}
+          height={180}
           priority={true}
           alt="Logo"
           className="mb-2"
