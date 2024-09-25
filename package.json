@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "concurrently \"npm run next-dev\" \"node server.js\"",
     "next-dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build", 
     "next-start": "next start",
     "start": "concurrently \"npm run next-start\" \"node server.js\"",
     "lint": "next lint"
