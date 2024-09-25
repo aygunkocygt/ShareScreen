@@ -52,7 +52,8 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     // Yönlendirme işlemi (başarılı oturum açma sonrası)
     async redirect({ url, baseUrl }) {
-      return baseUrl; // Base URL'ye yönlendir
+      const environmentBaseUrl = process.env.NEXT_PUBLIC_BASE_URL || baseUrl;
+      return environmentBaseUrl; // Base URL'ye yönlendir
     },
     
     // Oturum açarken kullanıcıyı kontrol edip kaydediyoruz
