@@ -2,8 +2,11 @@
 import React from 'react'
 import { motion } from "framer-motion";
 import { FolderIcon } from "lucide-react"; // Icon representing an empty state
+import { useRouter } from "next/navigation";
 
 const EmptyGridSection = () => {
+  const router = useRouter();
+
   return (
     <motion.div
       className="mt-10 max-w-md mx-auto p-6 shadow-lg  rounded-md bg-gradient-to-r from-[#180e13] to-[#14151c]"
@@ -31,6 +34,7 @@ const EmptyGridSection = () => {
           </motion.p>
         </div>
         <motion.button
+         onClick={() => {router.push(`/CreateRoom`)}}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           className="w-full bg-gray-800 text-white py-2 rounded-md hover:bg-gray-700 mb-4"

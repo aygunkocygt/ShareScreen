@@ -47,3 +47,37 @@ export async function createRoom(prevState: unknown, formData: FormData) {
   // Redirect to the new room's page using the room ID
   redirect(`/Room/${newRoom.id}`);
 }
+
+
+export async function deleteRoom(formData: FormData) {
+  const session = await getSession();
+  const userEmail = session?.user?.email;
+
+  const { roomId } = formData;
+
+  // Find the room and make sure the current user is the owner
+  const room = await db.room.findUnique({
+    where: { id: roomId },
+    select: { userId: true },
+  });
+
+  if (!room) {
+    return { error: "Room not found." };
+  }
+
+  // Check if the logged-in user is the owner of the room
+  let user = await db.user.findUnique({ where: { email: userEmail } });
+  if (!user || user.id !== room.userId) {
+    return { error: "You are not authorized to delete this room." };
+  }
+
+  // Delete the room
+  await db.room.delete({
+    where: { id: roomId },
+  });
+
+  revalidatePath("/"); // Revalidate the homepage (or any other path)
+
+  // Redirect to the homepage after deleting the room
+  redirect("/");
+}

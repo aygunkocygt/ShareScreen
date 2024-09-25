@@ -24,8 +24,6 @@ export default async function HomePage() {
 
   const newestGetRooms = await getRooms();
 
-  console.log("newestGetRooms:",newestGetRooms)
-
   return (
     <main className="space-y-12">
       {newestGetRooms.length > 0 ? (
